@@ -1,0 +1,29 @@
+/*
+Donald Ulfig
+CSC 355 601
+Assignment 3
+/*Query 1*/
+select City, State From DEALER 
+	Where State Like 'NJ' or State like 'NY';
+/*Query 2*/
+select * from DEALER 
+	where NAME like '%Honda%' order by NAME;
+/*Query 3*/
+select year, model, id from car 
+	where company = 'Toyota' and year >= 2015 order by price;
+/*Query 4*/
+select avg(price), company from car 
+	group by company;
+/*Query 5*/
+select min(price), year from car 
+	group by year order by year desc;
+/*Query 6*/
+select dealerid, sum(quantity) from inventory 
+	group by dealerid  having sum(quantity) >20 order by dealerid;
+/*Query 7*/
+select count(inventory.dealerid), car.id from inventory, car 
+	where car.price>20000 and inventory.carid = car.id group by car.id ;
+/*Query 8*/
+select count(inventory.dealerid), car.id, sum(inventory.quantity) from inventory 
+	right outer join car on inventory.carid = car.id  
+	group by car.id order by count(inventory.dealerid) ;
